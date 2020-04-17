@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/AtlasSkyholder/Postgre-tests/issues"
   },
-  "homepage": "https://github.com/AtlasSkyholder/Postgre-tests#readme"
+  "homepage": "https://github.com/AtlasSkyholder/Postgre-tests#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0"
+  }
 }
