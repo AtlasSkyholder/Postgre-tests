@@ -1,21 +1,20 @@
+require('dotenv').config();
+
 const PORT       = process.env.PORT || 8080;
 const express    = require("express");
 const bodyParser = require("body-parser");
 const app        = express();
+const db = require('./db.js');
 
-const { Pool } = require('pg');
-const dbParams = require('./db.js');
-const db = new Pool(dbParams);
-db.connect();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("index.html");
+  console.log(db.getUsers);
+  res.render("index");
 });
 
-app.post("/", (req,res) => {
-  let x = req.body;
-  console.log(x);
-});
+app.post("/", db.createUser);
 
 
 app.listen(PORT, process.env.IP, function(){
