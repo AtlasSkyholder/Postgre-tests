@@ -10,8 +10,7 @@ const pool = new Pool({
   port: process.env.DB_PORT
 });
 
-const createUser = (request, response) => {
-  const {email , name} = request.body;
+const createUser = (name, email) => {
 
   return pool.query(`INSERT INTO users (name, email) VALUES ($1, $2)`, [name, email]);
 }

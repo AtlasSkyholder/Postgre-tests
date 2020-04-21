@@ -15,10 +15,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/", db.createUser);
+app.post("/", (req, res) => {
+  const {email , name} = req.body;
+  db.createUser(name, email);
+  res.render("index");
+});
 
 app.get("/read", (req, res) => {
-  console.log(req.body)
   let data = "";
   res.render("read", {email: data});
 });
