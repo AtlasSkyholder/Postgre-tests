@@ -32,4 +32,9 @@ const updateUsers = function(name, email) {
   return pool.query(`UPDATE users SET email = $2 WHERE name = $1`,[name, email]);
 }
 
-module.exports = {createUser, getUsers, findUsers, updateUsers};
+const deleteUsers = function(name) {
+
+  return pool.query(`DELETE FROM users WHERE name = $1`,[name]);
+}
+
+module.exports = {createUser, getUsers, findUsers, updateUsers, deleteUsers};

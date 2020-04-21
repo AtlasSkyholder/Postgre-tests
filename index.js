@@ -64,18 +64,17 @@ app.get("/delete", (req, res) => {
 app.post("/delete", (req, res) => {
 
   async function x () {
-    const {email , name} = req.body;
-    await db.updateUsers(name, email);
-    return name;
+    const name = req.body.name;
+    await db.deleteUsers(name);
   }
-  x().then(name => { 
+  x().then(() => { 
     
-    let data = db.findUsers(name);
+    let data = db.getUsers();
     return data;
     
     }).then(data => { 
-    data = data.email; 
-    res.render("delete", {email: data })});
+    data = JSON.stringify(data); 
+    res.render("delete", {list: data })});
 });
 
 app.listen(PORT, process.env.IP, function(){
