@@ -19,18 +19,41 @@
 
 <body>
 
-  <form method="POST" action="/">
+    <a href="/" class="btn btn-primary">Create</a>
+    <a href="/read" class="btn btn-primary">Read</a>
+    <a href="/update" class="btn btn-primary">Update</a>
+    <a href="/delete" class="btn btn-primary">Delete</a>
+
+  <form  method="POST">
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="inputEmail" name="email" aria-describedby="emailHelp">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputName">Name</label>
+      <label for="exampleInputName">Search by Name</label>
       <input type="text" class="form-control" id="inputName" name="name">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button  type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+
+
+
+<!--   <script>
+    $(document).ready(function(){
+
+      $("#data").click(function(e){
+        event.preventDefault();
+        let value = document.getElementById('inputName').value;
+        if (value === ""){
+          console.log("nothing here");
+        } else{
+          console.log(value);
+          let data = db.getUsers;
+          console.log(data);
+        }
+      })
+
+
+    })
+  
+  </script> -->
 
 </body>
 

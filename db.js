@@ -23,4 +23,8 @@ const getUsers = function() {
   });
 }
 
-module.exports = {createUser, getUsers};
+const findUsers = function(name) {
+  return pool.query(`SELECT email FROM users WHERE name = $1`,[name]).then(res => {return res.rows[0]});
+}
+
+module.exports = {createUser, getUsers, findUsers};
