@@ -34,6 +34,28 @@ app.post("/read", (req, res) => {
     res.render("read", {email: data });});
 });
 
+app.get("/update", (req, res) => {
+  let data = "";
+  res.render("update", {email: data});
+});
+
+app.post("/update", (req, res) => {
+
+  async function x () {
+    const {email , name} = req.body;
+    await db.updateUsers(name, email);
+    return name;
+  }
+  x().then(name => { 
+    
+    let data = db.findUsers(name);
+    return data;
+    
+    }).then(data => { 
+    data = data.email; 
+    res.render("update", {email: data })});
+});
+
 app.listen(PORT, process.env.IP, function(){
   console.log(`Example app listening on port ${PORT}`);
 });

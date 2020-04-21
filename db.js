@@ -27,4 +27,9 @@ const findUsers = function(name) {
   return pool.query(`SELECT email FROM users WHERE name = $1`,[name]).then(res => {return res.rows[0]});
 }
 
-module.exports = {createUser, getUsers, findUsers};
+const updateUsers = function(name, email) {
+
+  return pool.query(`UPDATE users SET email = $2 WHERE name = $1`,[name, email]);
+}
+
+module.exports = {createUser, getUsers, findUsers, updateUsers};
