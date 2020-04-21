@@ -4,7 +4,6 @@ const PORT       = process.env.PORT || 8080;
 const express    = require("express");
 const bodyParser = require("body-parser");
 const app        = express();
-const http = require('http');
 const db = require('./db.js');
 
 
@@ -19,16 +18,20 @@ app.get("/", (req, res) => {
 app.post("/", db.createUser);
 
 app.get("/read", (req, res) => {
-  res.render("read");
+  console.log(req.body)
+  let data = "";
+  res.render("read", {email: data});
 });
 
 app.post("/read", (req, res) => {
 
-  (async () => {
-    let data = db.findUsers(req.body.name);
-    console.log(await data);
-  })();
-  res.render("read");
+  async function x () {
+    let data = await db.findUsers(req.body.name);
+    data = data.email;
+    return data;
+  }
+  x().then(data => { 
+    res.render("read", {email: data });});
 });
 
 app.listen(PORT, process.env.IP, function(){
